@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import SplitPane from 'react-split-pane';
+import { Provider } from 'mobx-react';
+import { DragDropContext } from 'react-dnd';
+
+import { Controller } from '@cerebral/mobx-state-tree';
+import store from './store';
+
+
 import './App.css';
+import Header from './components/Header';
+import ToolBox from './components/ToolBox';
+import controller from './controller';
+
+var c = Controller(store);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Provider {...c.provide()}>
+        <div className="App">
+          <Header/>
+          <SplitPane
+            split="vertical"
+            defaultSize={16 * 16}
+          >
+            <ToolBox/>
+            <div>123</div>
+          </SplitPane>
+        </div>
+      </Provider>
     );
   }
 }
