@@ -13,7 +13,7 @@ class App extends Component {
         <Header/>
         <SplitPane
           split="vertical"
-          defaultSize={16 * 16}
+          defaultSize={14 * 14}
         >
           <Toolbox/>
           <Editor></Editor>
